@@ -1,20 +1,27 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: adservice
+  name: cartservice
 spec:
+  selector:
+    matchLabels:
+      app: cartservice
   template:
+    metadata:
+      labels:
+        app: cartservice
     spec:
-      terminationGracePeriodSeconds: 10
+      serviceAccountName: default
+      terminationGracePeriodSeconds: 5
       containers:
       - name: server
-        image: gkulshre/adservice:v1
+        image: gkulshre/cartservice:v1
         ports:
-        - containerPort: 9555
+        - containerPort: 7070
         resources:
           requests:
             cpu: 200m
-            memory: 180Mi
+            memory: 64Mi
           limits:
             cpu: 300m
-            memory: 300Mi
+            memory: 128Mi

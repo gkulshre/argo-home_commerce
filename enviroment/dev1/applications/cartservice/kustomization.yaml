@@ -1,12 +1,12 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-        - adservice-deployment/adservice.yml
+        - cartservice-deployment/cartservice.yml
 patches:
-        - path: adservice.patch.yml
+        - path: cartservice.patch.yml
 
 configMapGenerator:
-        - name: cm1
+        - name: cm2
           literals:
-            - container_port=9555
+            - redis_port=redis-cart:6379
 
